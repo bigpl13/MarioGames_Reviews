@@ -1,2 +1,1 @@
------------MarioGames_Review-----------
-----Banco de dados de avaliar jogos----
+MarioGames_Review é Banco de dados de avaliar jogos
