@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ msg: "data da avaliacao vazia" })
     };
 
-    //verificando a data de postagem
+    //verificando a data de postagem.
     if (data_avaliacao > '2026-08-27') {
       return res.status(400).json({ msg: "data invalida" })
     };
