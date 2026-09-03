@@ -20,10 +20,10 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    //recebendo os valores.
+    //recebendo os valores
     const { texto_avaliacao, data_avaliacao, jogo_id } = req.body || {};
 
-    //verificando se tem valor vazio.
+    //verificando se tem valor vazio
     if (!texto_avaliacao) {
       return res.status(400).json({ msg: "texto de avaliacao vazio" })
     };
@@ -34,12 +34,12 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ msg: "data da avaliacao vazia" })
     };
 
-    //verificando a data de postagem.
+    //verificando a data de postagem
     if (data_avaliacao > '2026-08-27') {
       return res.status(400).json({ msg: "data invalida" })
     };
 
-    //testendo se o jogo existe(é a intencao).
+    //testendo se o jogo existe(é a intencao)
     const jogo = await db.query(
       "SELECT * FROM jogos WHERE id = $1", [jogo_id]);
     if (jogo.rowCount == 0) {
@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
     }
 
 
-    //colocar a avaliacao.
+    //colocar a avaliacao
     const r = await db.query("INSERT INTO avaliacoes (texto_avaliacao, data_avaliacao, jogo_id) VALUES($1, $2, $3) RETURNING *", [texto_avaliacao, data_avaliacao, jogo_id])
 
     return res.status(200).json({
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       avaliacao: r.rows[0]
     });
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   };
 });
 
