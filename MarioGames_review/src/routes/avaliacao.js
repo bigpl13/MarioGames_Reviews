@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     //recebendo os valores.
     const { texto_avaliacao, data_avaliacao, jogo_id } = req.body || {};
 
-    //verificando se tem valor vazio
+    //verificando se tem valor vazio.
     if (!texto_avaliacao) {
       return res.status(400).json({ msg: "texto de avaliacao vazio" })
     };
