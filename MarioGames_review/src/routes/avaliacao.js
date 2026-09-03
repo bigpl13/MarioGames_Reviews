@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    //recebendo os valores
+    //recebendo os valores.
     const { texto_avaliacao, data_avaliacao, jogo_id } = req.body || {};
 
     //verificando se tem valor vazio
