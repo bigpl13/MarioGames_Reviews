@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ msg: "data invalida" })
     };
 
-    //testendo se o jogo existe(é a intencao)
+    //testendo se o jogo existe(é a intencao).
     const jogo = await db.query(
       "SELECT * FROM jogos WHERE id = $1", [jogo_id]);
     if (jogo.rowCount == 0) {
