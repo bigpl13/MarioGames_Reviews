@@ -10,6 +10,7 @@ app.use("/hello", require("./routes/rota"));
 
 app.use("/plataforma", require("./routes/plataforma"))
 app.use("/avaliacao", require("./routes/avaliacao"));
+app.use("/jogo", require("./routes/jogo"))
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "static", "index.html"));

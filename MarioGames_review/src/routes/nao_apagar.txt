@@ -1,6 +1,67 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+
+
+router.get("/", async (req, res)=>{
+  try{
+    const r = await db.query("SELECT * FROM avaliacoes;")
+    return res.status(200).json(r.rows)
+  }catch(error){
+    return res.status(400).json({msg: error})
+  }
+})
+
+router.post("/", async (req, res)=>{
+    try{
+      //recebendo os valores
+      const { texto_avaliacao, data_avaliacao, jogo_id } = req.body || {};
+      console.log(req.body);
+
+      //bloco verificando se tem valor vazio
+      if(!texto_avaliacao){
+        return res.status(400).json({msg:"necessario mandar avaliação, não postado!"})
+      };
+      if(!data_avaliacao){
+        return res.status(400).json({msg:"necessario mandar data, não postado!"})
+      };
+      if(!jogo_id){
+        return res.status(400).json({msg:"necessario mandar o id do jogo, não postado!"})
+      };
+
+      //verificando a data de postagem
+      if (data_avaliacao > '2026-08-27') {
+        return res.status(400).json({msg:"data invalida, não postado!"})
+      };
+
+      //bloco testendo se o jogo existe(é a intencao)
+      const jogo = await db.query(
+        "SELECT * FROM jogos WHERE id = $1",
+        [jogo_id]
+      );
+      if (jogo.rowCount == 0) {
+        return res.status(400).json({msg:"jogo invalido, não postado!"})
+      };
+
+      //colocar a texto_avaliacao
+      const r = await db.query("INSERT INTO avaliacoes (texto_avaliacao, data_avaliacao, jogo_id) VALUES($1, $2, $3) RETURNING *", [texto_avaliacao, data_avaliacao, jogo_id])
+      
+      return res.status(200).json({
+        msg: "avaliacao adicionada!",
+        texto_avaliacao: r.rows[0]
+      });
+    }catch(error){
+      throw new Error(error)
+    };
+  });
+
+module.exports = router;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const express = require("express");
+const router = express.Router();
+const db = require("../db");
 //RICHARD ARRUMA ESSAS COISAS:
 //throw new Error eh para ser so no catch, trocar por res.status(400).json({msg:"mensagem de erro"}) linha(s): 27, 32 e 41
 //mudar a variavel avaliacao para texto_avaliacao linha(s): 23, 26, 45, 45

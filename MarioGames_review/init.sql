@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS jogos (
 /*laço mais fraco, dependente de jogos que eh dependente de plataforma*/
 CREATE TABLE IF NOT EXISTS avaliacoes (
     id SERIAL PRIMARY KEY,
-    avaliacao VARCHAR(100) NOT NULL,
+    texto_avaliacao VARCHAR(100) NOT NULL,
     data_avaliacao DATE NOT NULL,
     jogo_id INTEGER NOT NULL,
     FOREIGN KEY (jogo_id) REFERENCES jogos(id),

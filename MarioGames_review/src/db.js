@@ -1,4 +1,7 @@
-const { Pool } = require('pg');
+const pg = require('pg');
+const { Pool } = pg;
+
+pg.types.setTypeParser(1082, val => val);
 
 const pool = new Pool({
   host: process.env.DB_HOST || "database",
