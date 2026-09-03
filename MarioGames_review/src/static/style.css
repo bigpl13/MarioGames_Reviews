@@ -1,0 +1,217 @@
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f6f7f9;
+            color: #252525;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 0 60px;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            margin-bottom: 35px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        header h1 {
+            margin: 0 0 18px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        header p {
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        header a {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .categoria {
+            margin-bottom: 35px;
+        }
+
+        .categoria h2 {
+            margin: 0 0 15px 5px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        th {
+            padding: 15px 14px;
+            background: #f1f3f5;
+            color: #374151;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 18px 14px;
+            border-bottom: 1px solid #edf0f2;
+            color: #4b5563;
+            font-size: 13px;
+            line-height: 1.5;
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .metodo {
+            width: 10%;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        tbody tr:nth-child(1) .metodo {
+            color: #2563eb;
+        }
+
+        tbody tr:nth-child(2) .metodo {
+            color: #7c3aed;
+        }
+
+        tbody tr:nth-child(3) .metodo {
+            color: #16a34a;
+        }
+
+        tbody tr:nth-child(4) .metodo {
+            color: #ea580c;
+        }
+
+        tbody tr:nth-child(5) .metodo {
+            color: #dc2626;
+        }
+
+        .exemplo {
+            width: 20%;
+        }
+
+        .exemplo a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .exemplo a:hover {
+            text-decoration: underline;
+        }
+
+        .descricao {
+            width: 40%;
+        }
+
+        .resultado {
+            width: 30%;
+        }
+
+        .codigo {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 13px;
+            color: #475569;
+            font-family: "Courier New", monospace;
+            font-size: 11px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            min-height: 45px;
+        }
+
+        .espaco {
+            height: 30px;
+        }
+
+        @media (max-width: 900px) {
+
+            .container {
+                width: 95%;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 12px 10px;
+            }
+
+            .codigo {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: 94%;
+                padding-top: 20px;
+            }
+
+            header {
+                padding: 25px 15px;
+                border-radius: 16px;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            .categoria {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 750px;
+            }
+        }

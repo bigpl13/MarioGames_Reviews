@@ -5,7 +5,16 @@ const db = require("../db");
 //pega o jogo
 router.get("/", async (req, res) => {
     try {
-        const r = await db.query("SELECT * FROM jogos;")
+        const r = await db.query(`
+            SELECT 
+                jogos.id,
+                jogos.nome,
+                jogos.data_lancamento,
+                jogos.plataforma_id,
+                plataformas.nome AS plataforma
+            FROM jogos
+            JOIN plataformas ON jogos.plataforma_id = plataformas.id;
+        `)
         return res.status(200).json(r.rows)
     } catch (error) {
         return res.status(400).json({ msg: error })
@@ -16,7 +25,17 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const id = req.params.id
-        const r = await db.query("SELECT * FROM jogos WHERE id=$1;", [id])
+        const r = await db.query(`
+            SELECT
+                jogos.id,
+                jogos.nome,
+                jogos.data_lancamento,
+                jogos.plataforma_id,
+                plataformas.nome AS plataforma
+            FROM jogos
+            JOIN plataformas ON jogos.plataforma_id = plataformas.id
+            WHERE jogos.id = $1;
+        `, [id])
         return res.status(200).json(r.rows)
     } catch (error) {
         return res.status(400).json({ msg: error })
@@ -72,22 +91,15 @@ router.put("/:id", async (req, res) => {
         }
 
         //pegando todas as variaveis
-        const { nome, data_lancamento, plataforma_id } = req.body || {};
+        const { nome, plataforma_id } = req.body || {};
 
         //bloco vendo se existe tudo
         if (!nome) {
             return res.status(400).json({ msg: "nome não enviado, não alterado!" })
         }
-        if (!data_lancamento) {
-            return res.status(400).json({ msg: "data de lancamento não enviado, não alterado!" })
-        }
+
         if (!plataforma_id) {
             return res.status(400).json({ msg: "id da plataforma não enviado, não alterado!" })
-        }
-
-        //verificando se eh uma data valida
-        if (data_lancamento < '1958-10-30' || data_lancamento > '2026-08-27') {
-            return res.status(404).json({ msg: "data de lançamento invalida, deve estar entre 1958-10-30 e 2026-08-27, não postado!" })
         }
 
         //verifica se plataforma existe
@@ -96,9 +108,9 @@ router.put("/:id", async (req, res) => {
             return res.status(404).json({ msg: "plataforma não encontrada, não postado!" })
         }
 
-        const b = await db.query("UPDATE jogos SET nome=$1, data_lancamento=$2, plataforma_id=$3 WHERE id=$4 RETURNING *", [nome, data_lancamento, plataforma_id, id])
+        const b = await db.query("UPDATE jogos SET nome=$1, plataforma_id=$2 WHERE id=$3 RETURNING *", [nome, plataforma_id, id])
         return res.status(200).json({
-            msg:"jogo atualizado",
+            msg: "jogo atualizado",
             jogo: b.rows[0]
         })
     } catch (error) {

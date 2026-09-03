@@ -1,16 +1,490 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página inicial</title>
+
+    <title>MarioGames_Review - API</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <h1>Bem vindo ao express_template_docker</h1>
-    <p>Teste a rota <a href="/hello">neste link</a></p>
-    <p>Rota 1 -> <a href="/avaliacao">avaliacao</a></p>
-    <p>Rota 2 -> <a href="/plataforma">plataforma</a></p>
-    <p>Rota 3 -> <a href="/jogo">jogo</a></p>
+
+    <div class="container">
+
+        <header>
+
+            <h1>MarioGames_Review - API</h1>
+
+            <p>
+                Esta página apresenta as rotas disponíveis no sistema.
+            </p>
+
+            <p>
+                As informações abaixo descrevem os endpoints da API.
+            </p>
+
+            <p>
+                Teste a rota
+                <a href="/hello">/hello</a>
+            </p>
+
+        </header>
+
+
+        <section class="categoria">
+
+            <h2>Avaliação</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Método</th>
+                        <th>Exemplo</th>
+                        <th>Descrição</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="metodo">GET</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/avaliacao">
+                                /avaliacao
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Listar todas as avaliações.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+[
+  {
+    "id": 1,
+    "texto_avaliacao": "Eros fez um teste",
+    "data_avaliacao": "2000-10-11",
+    "jogo": "Eros"
+  },
+  ...
+]
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">GET ID</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/avaliacao/1">
+                                /avaliacao/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Buscar uma avaliação pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 1,
+    "texto_avaliacao": "Eros fez um teste",
+    "data_avaliacao": "2000-10-11",
+    "jogo": "Eros"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">POST</td>
+
+                        <td class="exemplo">
+                            POST
+                            <a href="/avaliacao">
+                                /avaliacao
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Cadastrar uma nova avaliação. Avaliação tem seu conteudo, data válida (maior ou igual a data de lançamento do jogo) e o id de um jogo válido
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 1,
+    "texto_avaliacao": "Jogo legal",
+    "data_avaliacao": "20010-10-11",
+    "jogo": "God of War"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">PUT</td>
+
+                        <td class="exemplo">
+                            PUT
+                            <a href="/avaliacao/1">
+                                /avaliacao/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Atualizar uma avaliação. Atualização tem seu conteudo, data válida (maior ou igual a data de lançamento do jogo) e o id de um jogo válido
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Avaliação atualizada"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">DELETE</td>
+
+                        <td class="exemplo">
+                            DELETE
+                            <a href="/avaliacao/1">
+                                /avaliacao/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Excluir uma avaliação pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Avaliação excluída"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <section class="categoria">
+
+            <h2>Plataforma</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Método</th>
+                        <th>Exemplo</th>
+                        <th>Descrição</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="metodo">GET</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/plataforma">
+                                /plataforma
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Listar todas as plataformas.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+[
+  {
+    "id": 2,
+    "nome": "PC"
+  },
+  ...
+]
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">GET ID</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/plataforma/1">
+                                /plataforma/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Buscar uma plataforma pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 3,
+    "nome": "Console"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">POST</td>
+
+                        <td class="exemplo">
+                            POST
+                            <a href="/plataforma">
+                                /plataforma
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Cadastrar uma nova plataforma.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 4,
+    "nome": "Celular"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">PUT</td>
+
+                        <td class="exemplo">
+                            PUT
+                            <a href="/plataforma/1">
+                                /plataforma/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Atualizar uma plataforma.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Plataforma atualizada"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">DELETE</td>
+
+                        <td class="exemplo">
+                            DELETE
+                            <a href="/plataforma/1">
+                                /plataforma/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Excluir uma plataforma pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Plataforma excluída"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <section class="categoria">
+
+            <h2>Jogo</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Método</th>
+                        <th>Exemplo</th>
+                        <th>Descrição</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="metodo">GET</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/jogo">
+                                /jogo
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Listar todos os jogos.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+[
+    {
+        "id": 1,
+        "nome": "Eros",
+        "data_lancamento": "2000-10-10",
+        "plataforma_id": 1,
+        "plataforma": "PC"
+    },
+    ...
+]
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">GET ID</td>
+
+                        <td class="exemplo">
+                            GET
+                            <a href="/jogo/1">
+                                /jogo/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Buscar um jogo pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 1,
+    "nome": "Eros",
+    "data_lancamento": "2000-10-10",
+    "plataforma_id": 1,
+    "plataforma": "PC"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">POST</td>
+
+                        <td class="exemplo">
+                            POST
+                            <a href="/jogo">
+                                /jogo
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Cadastrar um novo jogo. Jogo requer nome,data de lançamento válida, id da plataforma válido
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "id": 20,
+    "nome": "God Of War",
+    "data_lancamento": "2018-10-10",
+    "plataforma_id": 2,
+    "plataforma": "Console"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">PUT</td>
+
+                        <td class="exemplo">
+                            PUT
+                            <a href="/jogo/1">
+                                /jogo/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Atualizar um jogo. Jogo requer nome,data de lançamento válida, id da plataforma válido
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Jogo atualizado"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="metodo">DELETE</td>
+
+                        <td class="exemplo">
+                            DELETE
+                            <a href="/jogo/1">
+                                /jogo/:id
+                            </a>
+                        </td>
+
+                        <td class="descricao">
+                            Excluir um jogo pelo ID.
+                        </td>
+
+                        <td class="resultado">
+                            <div class="codigo">
+{
+    "msg": "Jogo excluído"
+}
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
 
 </body>
+
 </html>
