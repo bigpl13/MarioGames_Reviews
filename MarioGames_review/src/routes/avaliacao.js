@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
     }
 
 
-    //colocar a avaliacao
+    //colocar a avaliacao.
     const r = await db.query("INSERT INTO avaliacoes (texto_avaliacao, data_avaliacao, jogo_id) VALUES($1, $2, $3) RETURNING *", [texto_avaliacao, data_avaliacao, jogo_id])
 
     return res.status(200).json({
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
       avaliacao: r.rows[0]
     });
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   };
 });
 
