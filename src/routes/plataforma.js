@@ -70,7 +70,7 @@ router.delete("/:id", async (req, res) => {
     const b = await db.query("DELETE FROM plataformas WHERE id = $1 RETURNING *", [id])
     return res.status(200).json({
       msg: "plataformas e jogos da plataforma deletados!",
-      jogos: a.rows[0],
+      jogos: a.rows,
       plataforma: b.rows[0]
     })
   } catch (error) {

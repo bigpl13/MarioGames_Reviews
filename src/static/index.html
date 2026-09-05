@@ -34,6 +34,8 @@
         </header>
 
 
+        <!-- ==================== AVALIAÇÃO ==================== -->
+
         <section class="categoria">
 
             <h2>Avaliação</h2>
@@ -50,6 +52,8 @@
                 </thead>
 
                 <tbody>
+
+                    <!-- GET AVALIAÇÕES -->
 
                     <tr>
                         <td class="metodo">GET</td>
@@ -70,15 +74,24 @@
 [
   {
     "id": 1,
-    "texto_avaliacao": "Eros fez um teste",
-    "data_avaliacao": "2000-10-11",
-    "jogo": "Eros"
+    "texto_avaliacao": "Jogo muito bom!",
+    "data_avaliacao": "2020-10-11",
+    "jogo": "Super Mario Odyssey"
+  },
+  {
+    "id": 2,
+    "texto_avaliacao": "Excelente jogo!",
+    "data_avaliacao": "2021-05-20",
+    "jogo": "Super Mario Odyssey"
   },
   ...
 ]
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- GET AVALIAÇÃO POR ID -->
 
                     <tr>
                         <td class="metodo">GET ID</td>
@@ -97,14 +110,17 @@
                         <td class="resultado">
                             <div class="codigo">
 {
-    "id": 1,
-    "texto_avaliacao": "Eros fez um teste",
-    "data_avaliacao": "2000-10-11",
-    "jogo": "Eros"
+  "id": 1,
+  "texto_avaliacao": "Jogo muito bom!",
+  "data_avaliacao": "2020-10-11",
+  "jogo": "Super Mario Odyssey"
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- POST AVALIAÇÃO -->
 
                     <tr>
                         <td class="metodo">POST</td>
@@ -117,20 +133,22 @@
                         </td>
 
                         <td class="descricao">
-                            Cadastrar uma nova avaliação. Avaliação tem seu conteudo, data válida (maior ou igual a data de lançamento do jogo) e o id de um jogo válido
+                            Cadastrar uma nova avaliação. O ID é gerado automaticamente. É necessário informar o texto da avaliação, a data da avaliação e o ID de um jogo válido. A data da avaliação deve ser igual ou posterior à data de lançamento do jogo e não pode ser posterior a 2026-08-27.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "id": 1,
-    "texto_avaliacao": "Jogo legal",
-    "data_avaliacao": "20010-10-11",
-    "jogo": "God of War"
+  "texto_avaliacao": "Jogo legal",
+  "data_avaliacao": "2020-10-11",
+  "jogo_id": 1
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- PUT AVALIAÇÃO -->
 
                     <tr>
                         <td class="metodo">PUT</td>
@@ -143,17 +161,26 @@
                         </td>
 
                         <td class="descricao">
-                            Atualizar uma avaliação. Atualização tem seu conteudo, data válida (maior ou igual a data de lançamento do jogo) e o id de um jogo válido
+                            Atualizar uma avaliação pelo ID. O ID é informado na URL. Nesta rota, somente o texto da avaliação é alterado.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Avaliação atualizada"
+  "msg": "Avaliação atualizada",
+  "avaliacao": {
+    "id": 1,
+    "texto_avaliacao": "Jogo excelente!",
+    "data_avaliacao": "2020-10-11",
+    "jogo_id": 1
+  }
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- DELETE AVALIAÇÃO -->
 
                     <tr>
                         <td class="metodo">DELETE</td>
@@ -172,7 +199,13 @@
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Avaliação excluída"
+  "msg": "avaliação deletada!",
+  "avaliacao": {
+    "id": 1,
+    "texto_avaliacao": "Jogo legal",
+    "data_avaliacao": "2020-10-11",
+    "jogo_id": 1
+  }
 }
                             </div>
                         </td>
@@ -184,6 +217,8 @@
 
         </section>
 
+
+        <!-- ==================== PLATAFORMA ==================== -->
 
         <section class="categoria">
 
@@ -201,6 +236,8 @@
                 </thead>
 
                 <tbody>
+
+                    <!-- GET PLATAFORMAS -->
 
                     <tr>
                         <td class="metodo">GET</td>
@@ -220,14 +257,25 @@
                             <div class="codigo">
 [
   {
-    "id": 2,
+    "id": 1,
     "nome": "PC"
+  },
+  {
+    "id": 2,
+    "nome": "Console"
+  },
+  {
+    "id": 3,
+    "nome": "Nintendo Switch"
   },
   ...
 ]
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- GET PLATAFORMA POR ID -->
 
                     <tr>
                         <td class="metodo">GET ID</td>
@@ -245,13 +293,18 @@
 
                         <td class="resultado">
                             <div class="codigo">
-{
-    "id": 3,
-    "nome": "Console"
-}
+[
+  {
+    "id": 1,
+    "nome": "PC"
+  }
+]
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- POST PLATAFORMA -->
 
                     <tr>
                         <td class="metodo">POST</td>
@@ -264,18 +317,20 @@
                         </td>
 
                         <td class="descricao">
-                            Cadastrar uma nova plataforma.
+                            Cadastrar uma nova plataforma. O ID é gerado automaticamente.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "id": 4,
-    "nome": "Celular"
+  "nome": "Nintendo Switch"
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- PUT PLATAFORMA -->
 
                     <tr>
                         <td class="metodo">PUT</td>
@@ -288,17 +343,24 @@
                         </td>
 
                         <td class="descricao">
-                            Atualizar uma plataforma.
+                            Atualizar uma plataforma pelo ID. O ID é informado na URL. É necessário enviar apenas o novo nome.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Plataforma atualizada"
+  "msg": "plataforma editada!",
+  "plataforma": {
+    "id": 1,
+    "nome": "Nintendo Switch"
+  }
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- DELETE PLATAFORMA -->
 
                     <tr>
                         <td class="metodo">DELETE</td>
@@ -311,13 +373,37 @@
                         </td>
 
                         <td class="descricao">
-                            Excluir uma plataforma pelo ID.
+                            Excluir uma plataforma pelo ID. Os jogos vinculados à plataforma também são excluídos.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Plataforma excluída"
+  "msg": "plataformas e jogos da plataforma deletados!",
+  "jogos": [
+    {
+      "id": 1,
+      "nome": "Super Mario Odyssey",
+      "data_lancamento": "2017-10-27",
+      "plataforma_id": 1
+    },
+    {
+      "id": 2,
+      "nome": "Super Mario Odyssey 2",
+      "data_lancamento": "2017-10-27",
+      "plataforma_id": 1
+    },
+    {
+      "id": 3,
+      "nome": "Super Mario Odyssey 3",
+      "data_lancamento": "2017-10-27",
+      "plataforma_id": 1
+    }
+  ],
+  "plataforma": {
+    "id": 1,
+    "nome": "Nintendo Switch"
+  }
 }
                             </div>
                         </td>
@@ -329,6 +415,8 @@
 
         </section>
 
+
+        <!-- ==================== JOGO ==================== -->
 
         <section class="categoria">
 
@@ -347,6 +435,8 @@
 
                 <tbody>
 
+                    <!-- GET JOGOS -->
+
                     <tr>
                         <td class="metodo">GET</td>
 
@@ -364,18 +454,28 @@
                         <td class="resultado">
                             <div class="codigo">
 [
-    {
-        "id": 1,
-        "nome": "Eros",
-        "data_lancamento": "2000-10-10",
-        "plataforma_id": 1,
-        "plataforma": "PC"
-    },
-    ...
+  {
+    "id": 1,
+    "nome": "Super Mario Odyssey",
+    "data_lancamento": "2017-10-27",
+    "plataforma_id": 1,
+    "plataforma": "Nintendo Switch"
+  },
+  {
+    "id": 2,
+    "nome": "God of War",
+    "data_lancamento": "2018-04-20",
+    "plataforma_id": 2,
+    "plataforma": "PlayStation 4"
+  },
+  ...
 ]
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- GET JOGO POR ID -->
 
                     <tr>
                         <td class="metodo">GET ID</td>
@@ -393,16 +493,21 @@
 
                         <td class="resultado">
                             <div class="codigo">
-{
+[
+  {
     "id": 1,
-    "nome": "Eros",
-    "data_lancamento": "2000-10-10",
+    "nome": "Super Mario Odyssey",
+    "data_lancamento": "2017-10-27",
     "plataforma_id": 1,
-    "plataforma": "PC"
-}
+    "plataforma": "Nintendo Switch"
+  }
+]
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- POST JOGO -->
 
                     <tr>
                         <td class="metodo">POST</td>
@@ -415,21 +520,22 @@
                         </td>
 
                         <td class="descricao">
-                            Cadastrar um novo jogo. Jogo requer nome,data de lançamento válida, id da plataforma válido
+                            Cadastrar um novo jogo. O ID é gerado automaticamente. É necessário informar o nome, a data de lançamento e o ID de uma plataforma válida. A data deve estar entre 1958-10-30 e 2026-08-27.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "id": 20,
-    "nome": "God Of War",
-    "data_lancamento": "2018-10-10",
-    "plataforma_id": 2,
-    "plataforma": "Console"
+  "nome": "Super Mario Odyssey",
+  "data_lancamento": "2017-10-27",
+  "plataforma_id": 1
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- PUT JOGO -->
 
                     <tr>
                         <td class="metodo">PUT</td>
@@ -442,17 +548,26 @@
                         </td>
 
                         <td class="descricao">
-                            Atualizar um jogo. Jogo requer nome,data de lançamento válida, id da plataforma válido
+                            Atualizar um jogo pelo ID. O ID é informado na URL. É necessário enviar o novo nome e o ID de uma plataforma válida. A data de lançamento não é alterada.
                         </td>
 
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Jogo atualizado"
+  "msg": "jogo atualizado",
+  "jogo": {
+    "id": 1,
+    "nome": "Super Mario Odyssey",
+    "data_lancamento": "2017-10-27",
+    "plataforma_id": 1
+  }
 }
                             </div>
                         </td>
                     </tr>
+
+
+                    <!-- DELETE JOGO -->
 
                     <tr>
                         <td class="metodo">DELETE</td>
@@ -471,7 +586,13 @@
                         <td class="resultado">
                             <div class="codigo">
 {
-    "msg": "Jogo excluído"
+  "msg": "jogo deletado!",
+  "jogos": {
+    "id": 1,
+    "nome": "Super Mario Odyssey",
+    "data_lancamento": "2017-10-27",
+    "plataforma_id": 1
+  }
 }
                             </div>
                         </td>
@@ -482,6 +603,7 @@
             </table>
 
         </section>
+
 
     </div>
 

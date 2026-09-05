@@ -18,6 +18,27 @@ router.get("/", async (req, res) => {
   }
 })
 
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const r = await db.query(`
+      SELECT
+        avaliacoes.id,
+        avaliacoes.texto_avaliacao,
+        avaliacoes.data_avaliacao,
+        jogos.nome AS jogo
+      FROM avaliacoes
+      JOIN jogos ON avaliacoes.jogo_id = jogos.id
+      WHERE avaliacoes.id = $1;
+    `, [id])
+
+    return res.status(200).json(r.rows)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
 router.post("/", async (req, res) => {
   try {
     //recebendo os valores
