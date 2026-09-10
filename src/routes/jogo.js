@@ -76,8 +76,11 @@ router.post("/", async (req, res) => {
             jogo: r.rows[0]
         })
     } catch (error) {
-        throw new Error(error)
+    console.log(error)
+    if(error.code == "23505"){
+      return res.status(400).json({ msg: "já existe um jogo com esse nome!" })
     }
+  }
 })
 
 router.put("/:id", async (req, res) => {

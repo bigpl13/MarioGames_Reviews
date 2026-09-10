@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS plataformas (
 /*laço medio, liga plataforma e avaliacoes*/
 CREATE TABLE IF NOT EXISTS jogos (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(100) NOT NULL UNIQUE   ,
     data_lancamento DATE NOT NULL,
     plataforma_id INTEGER NOT NULL,
     FOREIGN KEY (plataforma_id) REFERENCES plataformas(id) ON DELETE CASCADE,
