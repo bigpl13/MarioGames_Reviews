@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS jogos (
     nome VARCHAR(100) NOT NULL,
     data_lancamento DATE NOT NULL,
     plataforma_id INTEGER NOT NULL,
-    FOREIGN KEY (plataforma_id) REFERENCES plataformas(id),
+    FOREIGN KEY (plataforma_id) REFERENCES plataformas(id) ON DELETE CASCADE,
     CHECK (
         data_lancamento >= '1958-10-30'
         AND data_lancamento <= '2026-08-27'
@@ -27,6 +27,25 @@ CREATE TABLE IF NOT EXISTS avaliacoes (
     CHECK (data_avaliacao <= '2026-08-27')
 );
 
+-- 3 inserts em plataformas
+INSERT INTO plataformas (nome) VALUES
+('PlayStation 5'),
+('Xbox Series X'),
+('Nintendo Switch');
+
+
+-- 3 inserts em jogos
+INSERT INTO jogos (nome, data_lancamento, plataforma_id) VALUES
+('God of War Ragnarök', '2022-11-09', 1),
+('Forza Horizon 5', '2021-11-05', 2),
+('The Legend of Zelda: Tears of the Kingdom', '2023-05-12', 3);
+
+
+-- 3 inserts em avaliacoes
+INSERT INTO avaliacoes (texto_avaliacao, data_avaliacao, jogo_id) VALUES
+('Excelente jogo e ótima história!', '2026-08-20', 1),
+('Gráficos incríveis e muita diversão.', '2026-08-21', 2),
+('Uma aventura muito bem desenvolvida.', '2026-08-22', 3);
 
 /*porque exite esses selects aqui? esse tipo de consulta eh realizada pelo js nao? ass: iudy*/
 /*

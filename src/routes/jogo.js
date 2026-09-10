@@ -128,11 +128,14 @@ router.delete("/:id", async (req, res) => {
             return res.status(404).json({ msg: "jogo nao encontrado" })
         }
 
+        const DeleteAvaliacao = await db.query("DELETE FROM avaliacoes WHERE jogo_id = $1 RETURNING *", [id])
+
         //deleta ele
         const b = await db.query("DELETE FROM jogos WHERE id = $1 RETURNING *", [id])
         return res.status(200).json({
             msg: "jogo deletado!",
             jogos: b.rows[0],
+            avaliacoes: DeleteAvaliacao.rows[0]
         })
     } catch (error) {
         console.log(error);
