@@ -88,10 +88,16 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id
 
     // verifica se a avaliação existe
-    const v = await db.query(
-      "SELECT * FROM avaliacoes WHERE id = $1",
-      [id]
-    )
+    const v = await db.query(`
+      SELECT
+        avaliacoes.id,
+        avaliacoes.texto_avaliacao,
+        avaliacoes.data_avaliacao,
+        jogos.nome
+      FROM avaliacoes
+      JOIN jogos ON avaliacoes.jogo_id = jogos.id
+      WHERE avaliacoes.id = $1
+    `, [id])
 
     if (v.rowCount == 0) {
       return res.status(404).json({
@@ -107,7 +113,8 @@ router.delete("/:id", async (req, res) => {
 
     return res.status(200).json({
       msg: "avaliação deletada!",
-      avaliacao: b.rows[0]
+      avaliacao: b.rows[0],
+      jogo:v.rows[0].nome
     })
 
   } catch (error) {

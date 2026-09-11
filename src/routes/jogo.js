@@ -76,11 +76,11 @@ router.post("/", async (req, res) => {
             jogo: r.rows[0]
         })
     } catch (error) {
-    console.log(error)
-    if(error.code == "23505"){
-      return res.status(400).json({ msg: "já existe um jogo com esse nome!" })
+        console.log(error)
+        if (error.code == "23505") {
+            return res.status(400).json({ msg: "já existe um jogo com esse nome!" })
+        }
     }
-  }
 })
 
 router.put("/:id", async (req, res) => {
@@ -126,7 +126,11 @@ router.delete("/:id", async (req, res) => {
         const id = req.params.id
 
         //verifica se o jogo existe
-        const v = await db.query("SELECT * FROM jogos WHERE id = $1", [id])
+        const v = await db.query(`
+            SELECT jogos.id, jogos.nome AS jogo, jogos.data_lancamento, plataformas.nome AS plataforma FROM jogos
+            JOIN plataformas ON jogos.plataforma_id = plataformas.id
+            WHERE jogos.id = $1;
+        `, [id])
         if (v.rowCount == 0) {
             return res.status(404).json({ msg: "jogo nao encontrado" })
         }
@@ -138,6 +142,7 @@ router.delete("/:id", async (req, res) => {
         return res.status(200).json({
             msg: "jogo deletado!",
             jogos: b.rows[0],
+            plataforma: v.rows[0].plataforma,
             avaliacoes: DeleteAvaliacao.rows[0]
         })
     } catch (error) {
